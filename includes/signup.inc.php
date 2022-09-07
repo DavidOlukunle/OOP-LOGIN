@@ -1,23 +1,35 @@
 <?php
-if(isset($_POST['signup'])){
 
-	//grabbing the data
-	$username=$_POST['username'];
-	$password=$_POST['password'];
-	$passwordRepeat=$_POST['passwordRepeat'];
-	$email=$_POST['email'];
+
 	// instantiate signupcontr class
-	include "../classes/dbh.classes.php";
-include "../classes/signup.classes.php";
-include "../classes/signup-contr.classes.php";
+	
+	include "../classes/Dbh.php";
 
-$signup=new SignupContr($username,$password,$passwordRepeat,$email);
+	include "../classes/Signup.php";
+
+	include "../classes/SignupContr.php";
 
 
-	//running error handler and user signup
-	$signup->signupuser();
+	if(isset($_POST['signup'])){
 
-	//going back to the front page
+			//grabbing the data
 
-header('location:../index.php?error=none');
-}
+			$username = $_POST['username'];
+
+			$password = $_POST['password'];
+
+			$passwordRepeat = $_POST['passwordRepeat'];
+
+			$email = $_POST['email'];
+			
+			$signup = new SignupContr($username, $password, $passwordRepeat, $email);
+
+
+			//running error handler and user signup
+
+			$signup->signupuser();
+
+			//going back to the front page
+
+			header('location:../index.php?error=none');
+	}
